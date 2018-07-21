@@ -1,0 +1,137 @@
+﻿{
+  "settings": [
+    {
+      "name": "Cargo4You",
+      "weight": {
+        "validation": {
+          "min": 20,
+          "max": -1
+        },
+        "bracket": [
+          {
+            "min": 0,
+            "max": 2,
+            "price": 15
+          },
+          {
+            "min": 2,
+            "max": 15,
+            "price": 18
+          },
+          {
+            "min": 15,
+            "max": 20,
+            "price": 35
+          }
+        ]
+      },
+      "size": {
+        "validation": {
+          "min": 2000,
+          "max": -1
+        },
+        "bracket": [
+          {
+            "min": 0,
+            "max": 1000,
+            "price": 10
+          },
+          {
+            "min": 1000,
+            "max": 2000,
+            "price": 20
+          }
+        ]
+      }
+    },
+    {
+      "name": "ShipFaster",
+      "weight": {
+        "validation": {
+          "min": 10,
+          "max": 30
+        },
+        "bracket": [
+          {
+            "min": 10,
+            "max": 15,
+            "price": 16.50
+          },
+          {
+            "min": 15,
+            "max": 25,
+            "price": 36.50
+          },
+          {
+            "min": 25,
+            "max": -1,
+            "price": 40,
+            "oversizeCost": 0.417
+          }
+        ]
+      },
+      "size": {
+        "validation": {
+          "min": 0,
+          "max": 1700
+        },
+        "bracket": [
+          {
+            "min": 0,
+            "max": 1000,
+            "price": 11.99
+          },
+          {
+            "min": 1000,
+            "max": 1700,
+            "price": 21.99
+          }
+        ]
+      }
+    }
+    //{
+    //  "name": "MaltaShip",
+    //  "weight": {
+    //    "validation": {
+    //      "min": 20,
+    //      "max": -1
+    //    },
+    //    "bracket": [
+    //      {
+    //        "min": 0,
+    //        "max": 2,
+    //        "price": 15
+    //      },
+    //      {
+    //        "min": 2,
+    //        "max": 15,
+    //        "price": 18
+    //      },
+    //      {
+    //        "min": 15,
+    //        "max": 20,
+    //        "price": 35
+    //      }
+    //    ]
+    //  },
+    //  "size": {
+    //    "validation": {
+    //      "min": 2000,
+    //      "max": -1
+    //    },
+    //    "bracket": [
+    //      {
+    //        "min": 0,
+    //        "max": 1000,
+    //        "price": 10
+    //      },
+    //      {
+    //        "min": 1000,
+    //        "max": 2000,
+    //        "price": 20
+    //      }
+    //    ]
+    //  }
+    //}
+  ]
+}

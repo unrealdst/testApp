@@ -1,0 +1,16 @@
+﻿@model TestApp.Models.PackageViewModel
+<div class="company-name">
+    @Model.CompanyName
+</div>
+<div class="prices">
+    <div>
+        @Model.PriceTag.PriceValue
+        <span>
+            @Model.PriceTag.Currency
+        </span>
+    </div>
+    <div>
+        @Model.PriceTag.PriceType
+    </div>
+</div>
+

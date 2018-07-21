@@ -1,0 +1,9 @@
+﻿@model TestApp.Models.IndexViewModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row col-md-12">
+    @Html.Partial("UserInput",Model.DimensionViewModel)
+    @Html.Partial("CalculationResult",Model.Packages)
+</div>
