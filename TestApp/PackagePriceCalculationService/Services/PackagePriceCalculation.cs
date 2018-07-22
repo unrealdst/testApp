@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace PackagePriceCalculationService.Services
 {
-    public class PackagePriceCalculation: IPackagePriceCalculation
+    public class PackagePriceCalculation : IPackagePriceCalculation
     {
         private readonly ICompanyCalculationConfigurationRepository companyCalculationConfigurationRepository;
 
@@ -20,8 +20,8 @@ namespace PackagePriceCalculationService.Services
         public CalculationResultModel CalculateCost(CalculationCostParameters parameters)
         {
             var configs = companyCalculationConfigurationRepository.GetCofigs();
-            IEnumerable<SingleCompanyCost> costs = configs.Companys.Select(x => CalculateCost(x, parameters));
-            costs = costs.OrderBy(x => x.Cost);
+            List<SingleCompanyCost> costs = configs.Companys.Select(x => CalculateCost(x, parameters)).Where(x => x != null).ToList();
+            costs = costs.OrderBy(x => x.Cost).ToList();
             costs.First().Promoted = true;
 
             var result = new CalculationResultModel()
@@ -69,7 +69,7 @@ namespace PackagePriceCalculationService.Services
                 return null;
             }
 
-            var costBrackets = config.Brackets.First(x => x.Min < size && x.Max > size);
+            var costBrackets = config.Brackets.FirstOrDefault(x => (x.Min > 0 && x.Min < size) && (x.Max > 0 && x.Max > size));
             if (costBrackets == null)
             {
                 costBrackets = config.Brackets.Last();
@@ -86,12 +86,12 @@ namespace PackagePriceCalculationService.Services
         {
             int size = dimensionsParameters.Depth * dimensionsParameters.Height * dimensionsParameters.Width;
 
-            if (config.Validation.Min > size || config.Validation.Max < size)
+            if ((config.Validation.Min > 0 && config.Validation.Min > size) || (config.Validation.Max > 0 && config.Validation.Max < size))
             {
                 return null;
             }
 
-            var costBrackets = config.Brackets.First(x => x.Min < size && x.Max > size);
+            var costBrackets = config.Brackets.First(x => (x.Min > 0 && x.Min < size) && (x.Max > 0 && x.Max > size));
             return costBrackets.Price;
 
         }

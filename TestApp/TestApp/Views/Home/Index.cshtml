@@ -4,6 +4,9 @@
 }
 
 <div class="row col-md-12">
+    <div id="errors-section"></div>
     @Html.Partial("UserInput",Model.DimensionViewModel)
-    @Html.Partial("CalculationResult",Model.Packages)
+    <div id="calculation-result">        
+        @Html.Partial("CalculationResult", Model.Packages)
+    </div>
 </div>

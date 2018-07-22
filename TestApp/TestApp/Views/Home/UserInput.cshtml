@@ -1,19 +1,26 @@
 ﻿@model TestApp.Models.DimensionViewModel
-<div class="input">
-    <div class="input-group">
-        <span class="input-group-addon">@nameof(Model.Depth)</span>
-        @Html.TextArea(Model.Depth)
-    </div>
-    <div class="input-group">
-        <span class="input-group-addon">@nameof(Model.Width)</span>
-        @Html.TextArea(Model.Width)
-    </div>
-    <div class="input-group">
-        <span class="input-group-addon">@nameof(Model.Height)</span>
-        @Html.TextArea(Model.Height)
-    </div>
-    <div class="input-group">
-        <span class="input-group-addon">@nameof(Model.Weight)</span>
-        @Html.TextArea(Model.Weight)
-    </div>
+<div id="user-input" class="input">
+        <div class="input-group">
+            <span class="input-group-addon">@nameof(Model.Depth)</span>
+            @Html.TextArea(Model.Depth, new { @class = "depth" })
+            @Html.ValidationMessage(Model.Depth)
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon">@nameof(Model.Width)</span>
+            @Html.TextArea(Model.Width, new { @class = "width" })
+            @Html.ValidationMessage(Model.Width)
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon">@nameof(Model.Height)</span>
+            @Html.TextArea(Model.Height, new { @class = "height" })
+            @Html.ValidationMessage(Model.Height)
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon">@nameof(Model.Weight)</span>
+            @Html.TextArea(Model.Weight, new { @class = "weight" })
+            @Html.ValidationMessage(Model.Weight)
+        </div>
+        <div>
+            <button onclick="sendRequest()">DO IT</button>
+        </div>
 </div>

@@ -152,8 +152,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ViewExtensions.cs" />
     <Compile Include="Models\DiemnsionInputModel.cs" />
     <Compile Include="Models\DimensionViewModel.cs" />
+    <Compile Include="Models\GenericJsonResult.cs" />
     <Compile Include="Models\IndexViewModel.cs" />
     <Compile Include="Models\PackageViewModel.cs" />
     <Compile Include="Models\PriceTagViewModel.cs" />
@@ -164,10 +166,12 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Main.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\main.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -199,6 +203,7 @@
     <Content Include="Views\Home\UserInput.cshtml" />
     <Content Include="Views\Home\CalculationResult.cshtml" />
     <Content Include="Views\Home\Price.cshtml" />
+    <Content Include="Views\Shared\ErrorSection.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,12 +1,9 @@
 ﻿@model IEnumerable<TestApp.Models.PackageViewModel>
 
 <div class="result">
-    <div class="promoted-price">
-        @Html.Partial("Price", Model.SingleOrDefault(x => x.Promoted))
-    </div>
-    @foreach (var package in Model.Where(x => !x.Promoted))
+    @foreach (var package in Model)
     {
-        <div class="normal-price">
+        <div class='@(package.Promoted ? "promoted-price" : "normal-price")'>
             @Html.Partial("Price", package)
         </div>
 
