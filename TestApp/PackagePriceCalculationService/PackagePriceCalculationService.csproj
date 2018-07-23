@@ -56,6 +56,10 @@
       <Project>{2D2B02C4-908E-4C2A-BC53-4FF58E92B794}</Project>
       <Name>CompanyCalculationConfigurationRepository</Name>
     </ProjectReference>
+    <ProjectReference Include="..\InputLogger\InputLogger.csproj">
+      <Project>{364A2E50-3445-41EA-B7B2-88E89E58084E}</Project>
+      <Name>InputLogger</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

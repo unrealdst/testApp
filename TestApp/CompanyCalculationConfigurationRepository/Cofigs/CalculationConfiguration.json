@@ -5,40 +5,40 @@
       "weight": {
         "validation": {
           "min": 0,
-          "max": 20
+          "max": 21
         },
         "bracket": [
           {
             "min": 0,
-            "max": 2,
+            "max": 3,
             "price": 15
           },
           {
             "min": 2,
-            "max": 15,
+            "max": 16,
             "price": 18
           },
           {
             "min": 15,
-            "max": 20,
+            "max": 21,
             "price": 35
           }
         ]
       },
       "size": {
         "validation": {
-          "min": 0 ,
-          "max": 2000
+          "min": 0,
+          "max": 2001
         },
         "bracket": [
           {
             "min": 0,
-            "max": 1000,
+            "max": 1001,
             "price": 10
           },
           {
             "min": 1000,
-            "max": 2000,
+            "max": 2001,
             "price": 20
           }
         ]
@@ -49,17 +49,17 @@
       "weight": {
         "validation": {
           "min": 10,
-          "max": 30
+          "max": 31
         },
         "bracket": [
           {
             "min": 10,
-            "max": 15,
+            "max": 16,
             "price": 16.50
           },
           {
             "min": 15,
-            "max": 25,
+            "max": 26,
             "price": 36.50
           },
           {
@@ -73,65 +73,76 @@
       "size": {
         "validation": {
           "min": 0,
-          "max": 1700
+          "max": 1701
         },
         "bracket": [
           {
             "min": 0,
-            "max": 1000,
+            "max": 1001,
             "price": 11.99
           },
           {
             "min": 1000,
-            "max": 1700,
+            "max": 1701,
             "price": 21.99
           }
         ]
       }
+    },
+    {
+      "name": "MaltaShip",
+      "weight": {
+        "validation": {
+          "min": 9,
+          "max": -1
+        },
+        "bracket": [
+          {
+            "min": 10,
+            "max": 21,
+            "price": 16.99
+          },
+          {
+            "min": 20,
+            "max": 31,
+            "price": 33.99
+          },
+          {
+            "min": 30,
+            "max": -1,
+            "price": 43.99,
+            "oversizeCost": 0.410
+          }
+        ]
+      },
+      "size": {
+        "validation": {
+          "min": 499,
+          "max": -1
+        },
+        "bracket": [
+          {
+            "min": 0,
+            "max": 1001,
+            "price": 9.50
+          },
+          {
+            "min": 1000,
+            "max": 2001,
+            "price": 19.50
+          },
+          {
+            "min": 2000,
+            "max": 5001,
+            "price": 48.50
+          },
+          {
+            "min": 5000,
+            "max": -1,
+            "price": 147.50
+          }
+        ]
+      }
     }
-    //{
-    //  "name": "MaltaShip",
-    //  "weight": {
-    //    "validation": {
-    //      "min": 20,
-    //      "max": -1
-    //    },
-    //    "bracket": [
-    //      {
-    //        "min": 0,
-    //        "max": 2,
-    //        "price": 15
-    //      },
-    //      {
-    //        "min": 2,
-    //        "max": 15,
-    //        "price": 18
-    //      },
-    //      {
-    //        "min": 15,
-    //        "max": 20,
-    //        "price": 35
-    //      }
-    //    ]
-    //  },
-    //  "size": {
-    //    "validation": {
-    //      "min": 2000,
-    //      "max": -1
-    //    },
-    //    "bracket": [
-    //      {
-    //        "min": 0,
-    //        "max": 1000,
-    //        "price": 10
-    //      },
-    //      {
-    //        "min": 1000,
-    //        "max": 2000,
-    //        "price": 20
-    //      }
-    //    ]
-    //  }
-    //}
   ]
 }

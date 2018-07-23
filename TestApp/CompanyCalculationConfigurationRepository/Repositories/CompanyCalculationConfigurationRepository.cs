@@ -9,11 +9,17 @@ namespace CompanyCalculationConfigurationRepository
 {
     public class CompanyCalculationConfigurationRepository : ICompanyCalculationConfigurationRepository
     {
-        private readonly string ConfigPath = @"D:\repo\testApp\TestApp\CompanyCalculationConfigurationRepository\Cofigs\CalculationConfiguration.json";
-    
+        private readonly string SubPath = @"..\CompanyCalculationConfigurationRepository\Cofigs\CalculationConfiguration.json";
+        private readonly string ConfigPath;
+
+        public CompanyCalculationConfigurationRepository()
+        {
+            this.ConfigPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, SubPath);
+        }
+
         public CompanyCalculationConfigurationModel GetCofigs()
         {
-            FileInfo config = new FileInfo(ConfigPath);
+            var config = new FileInfo(ConfigPath);
             if (config.Exists)
             {
                 using (StreamReader sr = new StreamReader(config.FullName))

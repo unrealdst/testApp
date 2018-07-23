@@ -1,5 +1,6 @@
 ﻿using CompanyCalculationConfigurationRepository.Interfaces;
 using CompanyCalculationConfigurationRepository.Models;
+using InputLogger.Interfaces;
 using PackagePriceCalculationService.Interfaces;
 using PackagePriceCalculationService.Models;
 using System;
@@ -11,10 +12,13 @@ namespace PackagePriceCalculationService.Services
     public class PackagePriceCalculation : IPackagePriceCalculation
     {
         private readonly ICompanyCalculationConfigurationRepository companyCalculationConfigurationRepository;
+        private readonly IInputLogger inputLogger;
 
-        public PackagePriceCalculation(ICompanyCalculationConfigurationRepository companyCalculationConfigurationRepository)
+        public PackagePriceCalculation(ICompanyCalculationConfigurationRepository companyCalculationConfigurationRepository,
+            IInputLogger inputLogger)
         {
             this.companyCalculationConfigurationRepository = companyCalculationConfigurationRepository;
+            this.inputLogger = inputLogger;
         }
 
         public CalculationResultModel CalculateCost(CalculationCostParameters parameters)
@@ -57,22 +61,22 @@ namespace PackagePriceCalculationService.Services
 
         private void SaveNotValdiateInput(CalculationCostParameters parameters)
         {
-
+            this.inputLogger.SaveWrongInput($"{parameters.DimensionsParameters.Depth}|{parameters.DimensionsParameters.Height}|{parameters.DimensionsParameters.Width}|{parameters.WieghtParameters.Weight}|{DateTime.Now}");
         }
 
         private decimal? CalculateWeight(WeightConfigurationModel config, WeightParameters weightParameters)
         {
             int size = weightParameters.Weight;
 
-            if (config.Validation.Min > size || config.Validation.Max < size)
+            if (!config.Validation.ItIsInBracket(size))
             {
                 return null;
             }
 
-            var costBrackets = config.Brackets.FirstOrDefault(x => (x.Min > 0 && x.Min < size) && (x.Max > 0 && x.Max > size));
+            var costBrackets = config.Brackets.FirstOrDefault(x => x.ItIsInBracket(size));
             if (costBrackets == null)
             {
-                costBrackets = config.Brackets.Last();
+                costBrackets = config.Brackets.Single(x => x.OversizeCost != null);
             }
             decimal result = costBrackets.Price;
             if (costBrackets.OversizeCost != null && size > costBrackets.Max)
@@ -86,12 +90,12 @@ namespace PackagePriceCalculationService.Services
         {
             int size = dimensionsParameters.Depth * dimensionsParameters.Height * dimensionsParameters.Width;
 
-            if ((config.Validation.Min > 0 && config.Validation.Min > size) || (config.Validation.Max > 0 && config.Validation.Max < size))
+            if (!config.Validation.ItIsInBracket(size))
             {
                 return null;
             }
 
-            var costBrackets = config.Brackets.First(x => (x.Min > 0 && x.Min < size) && (x.Max > 0 && x.Max > size));
+            var costBrackets = config.Brackets.First(x => x.ItIsInBracket(size));
             return costBrackets.Price;
 
         }

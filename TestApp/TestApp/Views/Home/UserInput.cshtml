@@ -1,26 +1,32 @@
 ﻿@model TestApp.Models.DimensionViewModel
-<div id="user-input" class="input">
-        <div class="input-group">
-            <span class="input-group-addon">@nameof(Model.Depth)</span>
-            @Html.TextArea(Model.Depth, new { @class = "depth" })
-            @Html.ValidationMessage(Model.Depth)
+<div class="row">
+    <div class="col-md-2">
+        <div id="user-input" class="input">
+            <div class="input-group">
+                <span class="input-group-addon">@nameof(Model.Depth)</span>
+                <input type="text" id="depth" class="form-control">
+            </div>
         </div>
+    </div>
+    <div class="col-md-2">
         <div class="input-group">
             <span class="input-group-addon">@nameof(Model.Width)</span>
-            @Html.TextArea(Model.Width, new { @class = "width" })
-            @Html.ValidationMessage(Model.Width)
+            <input type="text" id="width" class="form-control">
         </div>
+    </div>
+    <div class="col-md-2">
         <div class="input-group">
             <span class="input-group-addon">@nameof(Model.Height)</span>
-            @Html.TextArea(Model.Height, new { @class = "height" })
-            @Html.ValidationMessage(Model.Height)
+            <input type="text" id="height" class="form-control">
         </div>
+    </div>
+    <div class="col-md-2">
         <div class="input-group">
             <span class="input-group-addon">@nameof(Model.Weight)</span>
-            @Html.TextArea(Model.Weight, new { @class = "weight" })
-            @Html.ValidationMessage(Model.Weight)
+            <input type="text" id="weight" class="form-control">
         </div>
-        <div>
-            <button onclick="sendRequest()">DO IT</button>
-        </div>
+    </div>
+</div>
+<div class="row marigin-top-default">
+    <button onclick="sendRequest()">DO IT</button>
 </div>

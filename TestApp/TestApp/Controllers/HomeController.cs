@@ -1,16 +1,10 @@
-﻿using CompanyCalculationConfigurationRepository;
-using Newtonsoft.Json;
+﻿using InputLogger.Repostories;
 using PackagePriceCalculationService.Models;
 using PackagePriceCalculationService.Services;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Net;
-using System.Text;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.UI;
 using TestApp.Helpers;
 using TestApp.Models;
 
@@ -22,7 +16,8 @@ namespace TestApp.Controllers
         private readonly PackagePriceCalculation packagePriceCalculation;
         public HomeController()
         {
-            packagePriceCalculation = new PackagePriceCalculation(new CompanyCalculationConfigurationRepository.CompanyCalculationConfigurationRepository());
+            packagePriceCalculation = new PackagePriceCalculation(new CompanyCalculationConfigurationRepository.CompanyCalculationConfigurationRepository(),
+                new InputLogger.Repostories.InputLogger());
         }
 
         public ActionResult Index()
@@ -40,24 +35,13 @@ namespace TestApp.Controllers
                 {
                     new PackageViewModel()
                     {
-                        CompanyName="Company name 1",
+                        CompanyName="Cargo4You",
                         Promoted = true,
                         PriceTag = new PriceTagViewModel()
                         {
-                            Currency = "CZK",
-                            PriceValue ="50000",
-                            PriceType = "Size"
-                        }
-                    },
-                    new PackageViewModel()
-                    {
-                        CompanyName="Company name 2",
-                        Promoted = false,
-                        PriceTag = new PriceTagViewModel()
-                        {
-                            Currency = "CZK",
-                            PriceValue ="1000000",
-                            PriceType = "wieght"
+                            Currency = "EUR",
+                            PriceValue ="0",
+                            PriceType = String.Empty
                         }
                     }
                 }
@@ -73,7 +57,7 @@ namespace TestApp.Controllers
             {
                 result = new GenericJsonResult()
                 {
-                    Data = PartialView("ErrorSection", ModelState.Select(x => $"{x.Key} : { String.Join(" ", x.Value.Errors.Select(y => y.ErrorMessage))}")).RenderToString(),
+                    Data = PartialView("ErrorSection", ModelState.Where(x => x.Value.Errors.Any()).Select(x => $"{x.Key} : { String.Join(" ", x.Value.Errors.Select(y => y.ErrorMessage))}")).RenderToString(),
                     Success = false
                 };
             }
@@ -101,7 +85,7 @@ namespace TestApp.Controllers
                     CompanyName = x.CompanyName,
                     PriceTag = new PriceTagViewModel()
                     {
-                        Currency = "CZK",
+                        Currency = "EUR",
                         PriceType = x.CostType.ToString(),
                         PriceValue = x.Cost.ToString()
                     },

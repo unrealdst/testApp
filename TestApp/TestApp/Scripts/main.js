@@ -3,10 +3,10 @@ function sendRequest() {
         url: 'http://localhost:58617/Home/Calculate',
         type: 'GET',
         data: {
-            depth: $("#user-input .depth").val(),
-            width: $("#user-input .width").val(),
-            height: $("#user-input .height").val(),
-            weight: $("#user-input .weight").val()
+            depth: $("#depth").val(),
+            width: $("#width").val(),
+            height: $("#height").val(),
+            weight: $("#weight").val()
         },
         success: function (data) {
             if (data.Success) {

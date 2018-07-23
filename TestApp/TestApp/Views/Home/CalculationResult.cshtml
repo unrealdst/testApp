@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<TestApp.Models.PackageViewModel>
 
-<div class="result">
+<div class="result marigin-top-default">
     @foreach (var package in Model)
     {
         <div class='@(package.Promoted ? "promoted-price" : "normal-price")'>
